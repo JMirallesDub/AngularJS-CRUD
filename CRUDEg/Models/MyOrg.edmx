@@ -4,49 +4,49 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MyOrgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Departments">
-          <Key>
-            <PropertyRef Name="Did" />
-          </Key>
-          <Property Name="Did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="HOD" Type="varchar" MaxLength="50" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Employees">
-          <Key>
-            <PropertyRef Name="Eid" />
-          </Key>
-          <Property Name="Eid" Type="int" Nullable="false" />
-          <Property Name="EName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ESalary" Type="float" Nullable="false" />
-          <Property Name="EGender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EDOB" Type="datetime" Nullable="false" />
-          <Property Name="Did" Type="int" />
-          <Property Name="UpdatedDate" Type="binary" MaxLength="8" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <Association Name="FK_Employee_Department">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="Did" />
-            </Principal>
-            <Dependent Role="Employees">
-              <PropertyRef Name="Did" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="MyOrgModelStoreContainer">
-          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Employees" EntitySet="Employees" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="MyOrgModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MyOrgModelStoreContainer">
+    <EntitySet Name="Departments" EntityType="MyOrgModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="MyOrgModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Employee_Department" Association="MyOrgModel.Store.FK_Employee_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="HOD" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Eid" />
+    </Key>
+    <Property Name="Eid" Type="int" Nullable="false" />
+    <Property Name="EName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ESalary" Type="float" Nullable="false" />
+    <Property Name="EGender" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="EDOB" Type="datetime" Nullable="false" />
+    <Property Name="Did" Type="int" Nullable="true" />
+    <Property Name="UpdatedDate" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
+  </EntityType>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="MyOrgModel.Store.Departments" Multiplicity="0..1" />
+    <End Role="Employee" Type="MyOrgModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Did" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Did" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyOrgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

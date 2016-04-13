@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/13/2016 18:27:30
+-- Date Created: 04/13/2016 19:05:41
 -- Generated from EDMX file: C:\Users\godar\OneDrive\Documentos\Visual Studio 2015\Projects\Validations\CRUDEg\Models\MyOrg.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [MyOrg];
+USE [dbAlergomurcia];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -18,18 +18,18 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_Employee_Department]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Employee] DROP CONSTRAINT [FK_Employee_Department];
+    ALTER TABLE [dbo].[Employees] DROP CONSTRAINT [FK_Employee_Department];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Department]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Department];
+IF OBJECT_ID(N'[dbo].[Departments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Departments];
 GO
-IF OBJECT_ID(N'[dbo].[Employee]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Employee];
+IF OBJECT_ID(N'[dbo].[Employees]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Employees];
 GO
 
 -- --------------------------------------------------

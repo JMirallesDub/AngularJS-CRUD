@@ -18,7 +18,7 @@ namespace CRUDEg.Models
         public string EName { get; set; }
         public double ESalary { get; set; }
         public string EGender { get; set; }
-        public System.DateTime EDOB { get; set; }
+        public System.DateTime? EDOB { get; set; }
         public Nullable<int> Did { get; set; }
         public byte[] UpdatedDate { get; set; }
     
